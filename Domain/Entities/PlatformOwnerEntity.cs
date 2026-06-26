@@ -4,5 +4,7 @@ namespace VideoGameStore.Domain.Entities
     {
         public string Name { get; set; } = string.Empty;
 
+        public ICollection<PlatformEntity> Platforms { get; set; } = [];
+
     }
 }
