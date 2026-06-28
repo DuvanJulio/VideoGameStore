@@ -7,11 +7,11 @@ using VideoGameStore.Infrastructure.Utils;
 
 namespace VideoGameStore.Infrastructure.Database
 {
-    public class DatabaseContex : DbContext
+    public class DatabaseContext : DbContext
     {
         private readonly AppEnviroment _env;
 
-        public DatabaseContex(DbContextOptions<DatabaseContex> options, AppEnviroment env) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options, AppEnviroment env) : base(options)
         {
             _env = env;
         }
