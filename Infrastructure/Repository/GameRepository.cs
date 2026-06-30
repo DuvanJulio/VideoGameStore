@@ -6,9 +6,9 @@ using VideoGameStore.Infrastructure.Database;
 
 namespace VideoGameStore.Infrastructure.Repository
 {
-    public class GameResitory : AsyncRepository<GameEntity>, IGameRepository
+    public class GameRepository : AsyncRepository<GameEntity>, IGameRepository
     {
-        public GameResitory(DatabaseContext context) : base(context)
+        public GameRepository(DatabaseContext context) : base(context)
         {
         } 
 
