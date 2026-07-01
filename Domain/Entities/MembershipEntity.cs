@@ -4,9 +4,9 @@ namespace VideoGameStore.Domain.Entities
     {
         public long IdProduct { get; set; }
 
-        public short IdPlatform { get; set; }
+        public long IdPlatform { get; set; }
 
-        public short IdMembershipType { get; set; }
+        public long IdMembershipType { get; set; }
 
         public ProductEntity? Product { get; set; }
 

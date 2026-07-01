@@ -6,9 +6,9 @@ namespace VideoGameStore.Domain.Entities
 
         public string Description { get; set; } = string.Empty;
 
-        public short IdProductType { get; set; }
+        public long IdProductType { get; set; }
 
-        public short IdFormat { get; set; }
+        public long IdFormat { get; set; }
 
         public long IdGamePlatform { get; set; }
 

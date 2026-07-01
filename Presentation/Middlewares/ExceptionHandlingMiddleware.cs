@@ -3,16 +3,16 @@ using VideoGameStore.Domain.Contracts.General;
 
 namespace VideoGameStore.Presentation.Middlewares
 {
-    public class ExceptionHandlerMiddleware<T>
+    public class ExceptionHandlingMiddleware<T>
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionHandlerMiddleware<T>> _logger;
+        private readonly ILogger<ExceptionHandlingMiddleware<T>> _logger;
         private readonly IHostEnvironment _env;
         private readonly IExceptionHandler<T> _exceptionHandler;
 
-        public ExceptionHandlerMiddleware(
+        public ExceptionHandlingMiddleware(
             RequestDelegate next,
-            ILogger<ExceptionHandlerMiddleware<T>> logger,
+            ILogger<ExceptionHandlingMiddleware<T>> logger,
             IHostEnvironment env,
             IExceptionHandler<T> exceptionHandler)
         {

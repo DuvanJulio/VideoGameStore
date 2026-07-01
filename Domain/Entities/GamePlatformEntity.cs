@@ -4,7 +4,7 @@ namespace VideoGameStore.Domain.Entities
     {
         public long IdGame { get; set; }
 
-        public short IdPlatform { get; set; }
+        public long IdPlatform { get; set; }
         
         public GameEntity? Game { get; set; }
 

@@ -9,9 +9,9 @@ namespace VideoGameStore.Infrastructure.Database
 {
     public class DatabaseContext : DbContext
     {
-        private readonly AppEnviroment _env;
+         private readonly AppEnvironment _env;
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options, AppEnviroment env) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options, AppEnvironment env) : base(options)
         {
             _env = env;
         }
@@ -42,7 +42,7 @@ namespace VideoGameStore.Infrastructure.Database
                             .HasDefaultValueSql("CURRENT_TIMESTAMP(6)")
                             .ValueGeneratedOnAdd();
 
-                        builder.Property("UpdateAt")
+                        builder.Property("UpdatedAt")
                             .HasDefaultValueSql("CURRENT_TIMESTAMP(6)")
                             .ValueGeneratedOnAddOrUpdate();
                     });
