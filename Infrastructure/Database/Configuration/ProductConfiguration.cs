@@ -18,20 +18,10 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.Property(x => x.IdProductType).HasColumnName("id_product_type");
             builder.Property(x => x.IdFormat).HasColumnName("id_format");
             builder.Property(x => x.IdGamePlatform).HasColumnName("id_game_platform");
+            builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             
-            builder.HasOne(x => x.ProductType)
-                .WithMany(x => x.Products)
-                .HasForeignKey(x => x.IdProductType);
-
-            builder.HasOne(x => x.Format)
-                .WithMany(x => x.Products)
-                .HasForeignKey(x => x.IdFormat);
-
-            builder.HasOne(x => x.GamePlatform)
-                .WithMany(x => x.Products)
-                .HasForeignKey(x => x.IdGamePlatform);
         }
     }
 }

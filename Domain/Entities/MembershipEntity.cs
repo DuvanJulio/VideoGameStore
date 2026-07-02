@@ -7,11 +7,5 @@ namespace VideoGameStore.Domain.Entities
         public long IdPlatform { get; set; }
 
         public long IdMembershipType { get; set; }
-
-        public ProductEntity? Product { get; set; }
-
-        public PlatformEntity? Platform { get; set; }
-
-        public MembershipTypeEntity? MembershipType { get; set; }
     }
 }

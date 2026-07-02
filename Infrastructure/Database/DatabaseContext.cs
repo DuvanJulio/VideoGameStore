@@ -45,6 +45,10 @@ namespace VideoGameStore.Infrastructure.Database
                         builder.Property("UpdatedAt")
                             .HasDefaultValueSql("CURRENT_TIMESTAMP(6)")
                             .ValueGeneratedOnAddOrUpdate();
+                        
+                        builder.Property("IsActive")
+                            .HasDefaultValue(true)
+                            .ValueGeneratedOnAdd();
                     });
                 }
             }

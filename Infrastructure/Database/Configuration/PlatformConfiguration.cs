@@ -15,6 +15,7 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.IdPlatformOwner).HasColumnName("id_platform_owner");
             builder.Property(x => x.Name).HasColumnName("name");
+            builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
 
