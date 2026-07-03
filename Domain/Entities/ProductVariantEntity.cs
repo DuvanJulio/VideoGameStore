@@ -8,7 +8,7 @@ namespace VideoGameStore.Domain.Entities
 
         public long IdProduct { get; set; }
 
-        public short IdAccountType { get; set; }
+        public long IdAccountType { get; set; }
 
         public AccountTypeEntity? AccountType { get; private set; }
         

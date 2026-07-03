@@ -4,6 +4,7 @@ namespace VideoGameStore.Domain.Entities
     {
         public string Name { get; set; } = string.Empty;
 
+        [JsonIgnore]
         public ICollection<ProductEntity> Products { get; private set; } = [];        
     }
 }

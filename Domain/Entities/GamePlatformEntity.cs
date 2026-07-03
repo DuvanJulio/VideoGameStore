@@ -10,6 +10,7 @@ namespace VideoGameStore.Domain.Entities
 
         public PlatformEntity? Platform { get; private set; }
 
+        [JsonIgnore]
         public ICollection<ProductEntity> Products { get; private set; } = [];
     }
 }

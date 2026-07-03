@@ -8,8 +8,10 @@ namespace VideoGameStore.Domain.Entities
 
         public PlatformOwnerEntity? PlatformOwner { get; private set; }
 
+        [JsonIgnore]
         public ICollection<GamePlatformEntity> GamePlatforms { get; private set; } = [];
 
+        [JsonIgnore]
         public ICollection<MembershipEntity> Memberships { get; private set; } = [];
     }
 }

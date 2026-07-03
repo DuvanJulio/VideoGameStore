@@ -26,7 +26,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -66,7 +66,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -85,7 +85,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -104,7 +104,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -123,7 +123,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -137,13 +137,13 @@ namespace VideoGameStore.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    id_platform_owner = table.Column<long>(type: "bigint", nullable: false),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    id_platform_owner = table.Column<long>(type: "bigint", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -165,10 +165,11 @@ namespace VideoGameStore.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     id_game = table.Column<long>(type: "bigint", nullable: false),
                     id_platform = table.Column<long>(type: "bigint", nullable: false),
+                    PlatformOwnerEntityId = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -185,6 +186,11 @@ namespace VideoGameStore.Migrations
                         principalTable: "platform",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_game_plantform_platform_owner_PlatformOwnerEntityId",
+                        column: x => x.PlatformOwnerEntityId,
+                        principalTable: "platform_owner",
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -198,13 +204,13 @@ namespace VideoGameStore.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    id_product_type = table.Column<long>(type: "bigint", nullable: false),
-                    id_format = table.Column<long>(type: "bigint", nullable: false),
                     id_game_platform = table.Column<long>(type: "bigint", nullable: false),
+                    id_format = table.Column<long>(type: "bigint", nullable: false),
+                    id_product_type = table.Column<long>(type: "bigint", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -242,7 +248,7 @@ namespace VideoGameStore.Migrations
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -260,8 +266,8 @@ namespace VideoGameStore.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_membership_product_id_product",
-                        column: x => x.id_product,
+                        name: "FK_membership_product_id_platform",
+                        column: x => x.id_platform,
                         principalTable: "product",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -274,14 +280,14 @@ namespace VideoGameStore.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    id_product = table.Column<long>(type: "bigint", nullable: false),
-                    id_account_type = table.Column<long>(type: "bigint", nullable: false),
                     price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     stock = table.Column<int>(type: "int", nullable: false),
+                    id_product = table.Column<long>(type: "bigint", nullable: false),
+                    id_account_type = table.Column<long>(type: "bigint", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)"),
                     updated_at = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP(6)")
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    is_active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -312,6 +318,11 @@ namespace VideoGameStore.Migrations
                 column: "id_platform");
 
             migrationBuilder.CreateIndex(
+                name: "IX_game_plantform_PlatformOwnerEntityId",
+                table: "game_plantform",
+                column: "PlatformOwnerEntityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_membership_id_membership_type",
                 table: "membership",
                 column: "id_membership_type");
@@ -320,11 +331,6 @@ namespace VideoGameStore.Migrations
                 name: "IX_membership_id_platform",
                 table: "membership",
                 column: "id_platform");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_membership_id_product",
-                table: "membership",
-                column: "id_product");
 
             migrationBuilder.CreateIndex(
                 name: "IX_platform_id_platform_owner",

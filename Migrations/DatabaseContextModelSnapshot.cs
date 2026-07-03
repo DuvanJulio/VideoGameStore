@@ -38,7 +38,10 @@ namespace VideoGameStore.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -74,7 +77,10 @@ namespace VideoGameStore.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -115,7 +121,9 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("description");
 
                     b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
                     b.Property<string>("Name")
@@ -160,7 +168,13 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("id_platform");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<long?>("PlatformOwnerEntityId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
@@ -175,6 +189,8 @@ namespace VideoGameStore.Migrations
                     b.HasIndex("IdGame");
 
                     b.HasIndex("IdPlatform");
+
+                    b.HasIndex("PlatformOwnerEntityId");
 
                     b.ToTable("game_plantform", (string)null);
                 });
@@ -207,7 +223,10 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("id_product");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
@@ -222,8 +241,6 @@ namespace VideoGameStore.Migrations
                     b.HasIndex("IdMembershipType");
 
                     b.HasIndex("IdPlatform");
-
-                    b.HasIndex("IdProduct");
 
                     b.ToTable("membership", (string)null);
                 });
@@ -244,7 +261,10 @@ namespace VideoGameStore.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -284,7 +304,10 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("id_platform_owner");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -322,7 +345,10 @@ namespace VideoGameStore.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -375,7 +401,10 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("id_product_type");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -417,7 +446,10 @@ namespace VideoGameStore.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -461,7 +493,10 @@ namespace VideoGameStore.Migrations
                         .HasColumnName("id_product");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(65,30)")
@@ -502,6 +537,10 @@ namespace VideoGameStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("VideoGameStore.Domain.Entities.PlatformOwnerEntity", null)
+                        .WithMany("GamePlatforms")
+                        .HasForeignKey("PlatformOwnerEntityId");
+
                     b.Navigation("Game");
 
                     b.Navigation("Platform");
@@ -521,9 +560,9 @@ namespace VideoGameStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VideoGameStore.Domain.Entities.ProductEntity", "Product")
+                    b.HasOne("VideoGameStore.Domain.Entities.ProductEntity", "Products")
                         .WithMany("Memberships")
-                        .HasForeignKey("IdProduct")
+                        .HasForeignKey("IdPlatform")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -531,7 +570,7 @@ namespace VideoGameStore.Migrations
 
                     b.Navigation("Platform");
 
-                    b.Navigation("Product");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("VideoGameStore.Domain.Entities.PlatformEntity", b =>
@@ -580,7 +619,7 @@ namespace VideoGameStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VideoGameStore.Domain.Entities.ProductEntity", "Product")
+                    b.HasOne("VideoGameStore.Domain.Entities.ProductEntity", "Products")
                         .WithMany("ProductVariants")
                         .HasForeignKey("IdProduct")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -588,7 +627,7 @@ namespace VideoGameStore.Migrations
 
                     b.Navigation("AccountType");
 
-                    b.Navigation("Product");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("VideoGameStore.Domain.Entities.AccountTypeEntity", b =>
@@ -625,6 +664,8 @@ namespace VideoGameStore.Migrations
 
             modelBuilder.Entity("VideoGameStore.Domain.Entities.PlatformOwnerEntity", b =>
                 {
+                    b.Navigation("GamePlatforms");
+
                     b.Navigation("Platforms");
                 });
 

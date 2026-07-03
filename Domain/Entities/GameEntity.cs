@@ -6,6 +6,7 @@ namespace VideoGameStore.Domain.Entities
 
         public string Description { get; set; } = string.Empty;
 
+        [JsonIgnore]
         public ICollection<GamePlatformEntity> GamePlatforms { get; private set; } = [];
     }
 }
