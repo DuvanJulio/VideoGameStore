@@ -9,5 +9,7 @@ namespace VideoGameStore.Domain.Entities
         public PlatformOwnerEntity? PlatformOwner { get; private set; }
 
         public ICollection<GamePlatformEntity> GamePlatforms { get; private set; } = [];
+
+        public ICollection<MembershipEntity> Memberships { get; private set; } = [];
     }
 }

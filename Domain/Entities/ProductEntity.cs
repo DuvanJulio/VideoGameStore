@@ -6,10 +6,20 @@ namespace VideoGameStore.Domain.Entities
 
         public string Description { get; set; } = string.Empty;
 
-        public long IdProductType { get; set; }
+        public long IdGamePlatform { get; set; }
 
         public long IdFormat { get; set; }
 
-        public long IdGamePlatform { get; set; }
+        public long IdProductType { get; set; }
+
+        public GamePlatformEntity? GamePlatform { get; private set; }
+
+        public FormatEntity? Format { get; private set; }
+
+        public ProductTypeEntity? ProductType { get; private set; }
+
+        public ICollection<ProductVariantEntity> ProductVariants { get; private set; } = [];
+
+        public ICollection<MembershipEntity> Memberships { get; private set; } = [];
     }
 }

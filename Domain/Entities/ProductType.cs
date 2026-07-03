@@ -2,6 +2,8 @@ namespace VideoGameStore.Domain.Entities
 {
     public class ProductTypeEntity : BaseEntity
     {
-        public string Name { get; set; } = string.Empty;        
+        public string Name { get; set; } = string.Empty;
+
+        public ICollection<ProductEntity> Products { get; private set; } = [];        
     }
 }

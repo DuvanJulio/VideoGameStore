@@ -6,8 +6,10 @@ namespace VideoGameStore.Domain.Entities
 
         public long IdPlatform { get; set; }
 
-        public GameEntity? Game { get; private set; } 
+        public GameEntity? Game { get; private set; }
 
         public PlatformEntity? Platform { get; private set; }
+
+        public ICollection<ProductEntity> Products { get; private set; } = [];
     }
 }

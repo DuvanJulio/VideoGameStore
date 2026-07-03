@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VideoGameStore.Domain.Entities;
@@ -19,7 +20,13 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
 
-            
+            builder.HasOne(x => x.Game)
+                .WithMany(x => x.GamePlatforms)
+                .HasForeignKey(x => x.IdGame);
+
+            builder.HasOne(x => x.Platform)
+                .WithMany(x => x.GamePlatforms)
+                .HasForeignKey(x => x.IdPlatform);
         }
     }
 }
