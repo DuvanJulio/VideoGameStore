@@ -33,6 +33,14 @@ namespace VideoGameStore.Infrastructure.Handler
                         _ex.Errors.Select(err => AdditionalInfo.Create("400", err))
                     );
                     break;
+                case NotFoundException _ex:
+                    statusCode = HttpStatusCode.NotFound;
+                    response.StatusCode = (int)statusCode;
+                    response.StatusDesc = "Recurso no encontrado.";
+                    response.AdditionalInfos.Add(
+                        AdditionalInfo.Create("404", _ex.Message)
+                    );
+                    break;
                 default:
                     response.StatusCode = (int)statusCode;
                     response.StatusDesc = statusCode.ToString();

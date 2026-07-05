@@ -34,15 +34,20 @@ namespace VideoGameStore.Presentation.Middlewares
             }
         }
 
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
         public async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var exceptionHandled = _exceptionHandler.Handler(ex);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exceptionHandled.StatusCode;
 
-            var options = JsonSerializer.Serialize(exceptionHandled.Failure);
+            var json = JsonSerializer.Serialize(exceptionHandled.Failure, _jsonOptions);
 
-            await context.Response.WriteAsync(options);
+            await context.Response.WriteAsync(json);
         }
     }
 }

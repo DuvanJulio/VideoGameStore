@@ -55,14 +55,11 @@ namespace VideoGameStore.Presentation.Config.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Success<GameEntity>>> GetGamesById(
+        public async Task<ActionResult<Success<GameEntity>>> GetGameById(
             [FromQuery] GetGameByIdQuery query,
             CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(query, cancellationToken);
-
-            if (result is null)
-                return NotFound();
 
             return Ok(Success<GameEntity>.Create(data: result));
         }

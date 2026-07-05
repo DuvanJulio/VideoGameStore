@@ -3,8 +3,8 @@ using VideoGameStore.Domain.Entities;
 
 namespace VideoGameStore.Application.Features.Game.Queries.GetGameById
 {
-    public class GetGameByIdQuery : IRequest<GameEntity?>
+    public class GetGameByIdQuery : IRequest<GameEntity>
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }
