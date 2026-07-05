@@ -14,7 +14,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.UpdateGame
 
         public async Task<bool> Handle(UpdateGameCommand request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetByIdAsync<long>(request.Id);
+            var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id);
 
             if (game is null)
                 throw new KeyNotFoundException($"No se encontro el juego con Id {request.Id}");

@@ -13,27 +13,32 @@ namespace VideoGameStore.Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public async Task<T?> GetByIdAsync<U>(U id)
+        public async Task<T?> GetByIdAsync(long id, CancellationToken cancellationToken = default)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _context.Set<T>().FindAsync([id], cancellationToken);
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
-            var entityAdded = _context.Set<T>().Add(entity);
-            return await Task.Run(() => entityAdded.Entity);
+            await _context.Set<T>().AddAsync(entity, cancellationToken);
+            return entity;
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public  Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            _context.Set<T>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-            return await Task.Run(() => entity);
+            _context.Set<T>().Update(entity);
+            return Task.FromResult(entity);
+        }
+
+        public  Task<T> DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        {
+            _context.Set<T>().Remove(entity);
+            return Task.FromResult(entity);
         }
     }
 }

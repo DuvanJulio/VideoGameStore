@@ -16,7 +16,7 @@ namespace VideoGameStore.Application.Features.Game.Queries.GetGameById
 
         public async Task<GameEntity> Handle(GetGameByIdQuery request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetByIdAsync<long>(request.Id);
+            var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id);
 
             if (game is null)
                 throw new NotFoundException(nameof(GameEntity), request.Id);

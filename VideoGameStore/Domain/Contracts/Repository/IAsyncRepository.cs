@@ -1,13 +1,15 @@
 namespace VideoGameStore.Domain.Contracts.Repository
 {
-    public interface IAsyncRepository<T>
+    public interface IAsyncRepository<T> where T : class
     {
-        Task<IReadOnlyList<T>> GetAllAsync();
+        Task<T?> GetByIdAsync(long id, CancellationToken cancellationToken = default);
 
-        Task<T?> GetByIdAsync<U>(U id);
+        Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task<T> UpdateAsync(T entity);
+        Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default);
+
+        Task<T> DeleteAsync(T entity, CancellationToken cancellationToken = default);        
     }
 }
