@@ -20,40 +20,27 @@ namespace VideoGameStore.Infrastructure.Handler
 
         public ExceptionHandlerReponse<T> Handler(Exception exception)
         {
-            var statusCode = HttpStatusCode.InternalServerError;
+            var defaultError = HttpStatusCode.InternalServerError;
             var response = new Failure<T>();
 
             switch (exception)
             {
                 case DataValidationException _ex:
-                    statusCode = HttpStatusCode.BadRequest;
-                    response.StatusCode = (int)statusCode;
-                    response.StatusDesc = "Solicitud mal formada. ";
-                    response.AdditionalInfos.AddRange(
-                        _ex.Errors.Select(err => AdditionalInfo.Create("400", err))
-                    );
+                    response.Error = "Solicitud mal formada. ";
+                    response.Message = string.Join(", ", _ex.Errors);
+                       
                     break;
                 case NotFoundException _ex:
-                    statusCode = HttpStatusCode.NotFound;
-                    response.StatusCode = (int)statusCode;
-                    response.StatusDesc = "Recurso no encontrado.";
-                    response.AdditionalInfos.Add(
-                        AdditionalInfo.Create("404", _ex.Message)
-                    );
+                    response.Error = "Recurso no encontrado.";
+                    response.Message = string.Join(", ", _ex.Message);
                     break;
                 default:
-                    response.StatusCode = (int)statusCode;
-                    response.StatusDesc = statusCode.ToString();
-                    response.AdditionalInfos.Add(
-                        AdditionalInfo.Create(
-                            code: "0",
-                            detail: exception.Message
-                        )
-                    );
+                    response.Error = defaultError.ToString();
+                    response.Message = exception.Message;
                     break;
             }
 
-            return new((int)statusCode, response);
+            return new((int)defaultError, response);
         }
     }
 }

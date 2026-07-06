@@ -6,26 +6,16 @@ namespace VideoGameStore.Domain.Models.Response
     {
         public T Data { get; set; }
 
-        private Success(T data,
-                        List<AdditionalInfo> additionalInfo)
+        private Success(T data)
         {
             Data = data;
-            StatusCode = (int)HttpStatusCode.OK;
-            StatusDesc = HttpStatusCode.OK.ToString();
-            AdditionalInfos = additionalInfo;
+            Error = null;
+            Message = "Operación exitosa";
+              
         }
-
         public static Success<T> Create(T data)
         {
-            var defaultAdditionalInfo = new List<AdditionalInfo>
-            {
-                AdditionalInfo.Create("200", "Operación exitosa")
-            };
-
-            return new Success<T>(
-                data,
-                defaultAdditionalInfo
-            );
+            return new Success<T>(data);
         }
     }
 }

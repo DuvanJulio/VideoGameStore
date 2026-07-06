@@ -18,7 +18,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.DeleteGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (game is null)
-                throw new KeyNotFoundException($"No se encontro el juego con Id {request.Id}");
+                throw new KeyNotFoundException($"No se encontro el juego");
 
             await _unitOfWork.GameRepository.DeleteAsync(game, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
