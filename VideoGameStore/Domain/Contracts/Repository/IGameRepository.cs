@@ -4,6 +4,6 @@ namespace VideoGameStore.Domain.Contracts.Repository
 {
     public interface IGameRepository : IAsyncRepository<GameEntity>
     {
-        Task<(IReadOnlyList<GameEntity> Items, int TotalCount)> GetPagedAsync(int page, int size);
+        Task<(IReadOnlyList<GameEntity> Items, int TotalCount)> GetPagedAsync(int page, int size, string? name = null, CancellationToken cancellationToken = default);
     }
 }

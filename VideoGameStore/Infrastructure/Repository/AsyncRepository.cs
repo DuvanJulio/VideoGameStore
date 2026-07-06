@@ -29,16 +29,18 @@ namespace VideoGameStore.Infrastructure.Repository
             return entity;
         }
 
-        public  Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default)
+        public Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
             _context.Set<T>().Update(entity);
             return Task.FromResult(entity);
         }
 
-        public  Task<T> DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        public Task<T> DeleteAsync(T entity, CancellationToken cancellationToken = default)
         {
             _context.Set<T>().Remove(entity);
             return Task.FromResult(entity);
         }
+
+        
     }
 }

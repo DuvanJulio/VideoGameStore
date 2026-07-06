@@ -55,7 +55,7 @@ namespace VideoGameStore.Presentation.Config
                 opt.AddPolicy("CorsPolicy", builder =>
                 {
                     builder.AllowAnyOrigin()
-                           .WithMethods("GET", "POST", "PUT")
+                           .WithMethods("GET", "POST", "PUT","DELETE")
                            .WithHeaders("uuId", "timestamp", "systemId");
                 });
             });

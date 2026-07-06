@@ -16,7 +16,7 @@ namespace VideoGameStore.Application.Features.Game.Queries.GetGames
 
         public async Task<PagedResponse<GameEntity>> Handle(GetGamesQuery request, CancellationToken cancellationToken)
         {
-            var (items, totalCount) = await _unitOfWork.GameRepository.GetPagedAsync(request.Page, request.Size);
+            var (items, totalCount) = await _unitOfWork.GameRepository.GetPagedAsync(request.Page, request.Size, request.Name, cancellationToken);
 
             return new PagedResponse<GameEntity>
             {
