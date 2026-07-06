@@ -1,0 +1,7 @@
+VideoGameStore.slnx
+VideoGameStore/bin/
+VideoGameStore/obj/
+
+bin/
+obj/
+.vs/
