@@ -20,27 +20,30 @@ namespace VideoGameStore.Infrastructure.Handler
 
         public ExceptionHandlerReponse<T> Handler(Exception exception)
         {
-            var defaultError = HttpStatusCode.InternalServerError;
+            var statusCode = HttpStatusCode.InternalServerError;
             var response = new Failure<T>();
 
             switch (exception)
             {
                 case DataValidationException _ex:
+                    statusCode = HttpStatusCode.BadRequest;
                     response.Error = "Solicitud mal formada. ";
                     response.Message = string.Join(", ", _ex.Errors);
                        
                     break;
                 case NotFoundException _ex:
+                    statusCode = HttpStatusCode.NotFound;
                     response.Error = "Recurso no encontrado.";
                     response.Message = string.Join(", ", _ex.Message);
                     break;
                 default:
-                    response.Error = defaultError.ToString();
+                    
+                    response.Error = statusCode.ToString("Error interno en el servidor");
                     response.Message = exception.Message;
                     break;
             }
 
-            return new((int)defaultError, response);
+            return new((int)statusCode, response);
         }
     }
 }

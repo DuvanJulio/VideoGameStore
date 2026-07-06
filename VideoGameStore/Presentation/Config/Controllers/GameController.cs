@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using VideoGameStore.Application.Features.Game.Commands.DeleteGame;
 using VideoGameStore.Application.Features.Game.Commands.InsertGame;
+using VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame;
 using VideoGameStore.Application.Features.Game.Commands.UpdateGame;
 using VideoGameStore.Application.Features.Game.Queries.GetGameById;
 using VideoGameStore.Application.Features.Game.Queries.GetGames;
@@ -73,6 +74,17 @@ namespace VideoGameStore.Presentation.Config.Controllers
             var result = await _mediator.Send(command, cancellationToken);
 
             return Ok(Success<bool>.Create(data: result));
+        }
+
+        [HttpDelete]
+
+        public async Task<ActionResult<Success<bool>>> SoftDeleteGame(
+            [FromBody] SoftDeleteGameCommand command,
+            CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            
+            return Ok(Success<bool>.Create(data: result));        
         }
     }
 }
