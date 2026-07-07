@@ -1,5 +1,8 @@
 using MediatR;
 using VideoGameStore.Domain.Contracts.Repository;
+using VideoGameStore.Domain.Exception;
+using VideoGameStore.Domain.Entities;
+
 
 namespace VideoGameStore.Application.Features.Game.Commands.UpdateGame
 {
@@ -17,7 +20,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.UpdateGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id);
 
             if (game is null)
-                throw new KeyNotFoundException($"No se encontro el juego con Id {request.Id}");
+                throw new NotFoundException(nameof(GameEntity), request.Id);
 
             game.Name = request.Name;
             game.Description = request.Description;

@@ -1,6 +1,7 @@
 using MediatR;
 using VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame;
 using VideoGameStore.Domain.Contracts.Repository;
+using VideoGameStore.Domain.Exception;
 using VideoGameStore.Domain.Entities;
 
 namespace VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame
@@ -19,7 +20,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(reques.Id, cancellationToken);
 
             if (game is null)
-                throw new KeyNotFoundException("No se encontro el juego");
+                throw new NotFoundException(nameof(GameEntity));
 
             game.IsActive = false;
             await _unitOfWork.SaveChangeAsync(cancellationToken);
