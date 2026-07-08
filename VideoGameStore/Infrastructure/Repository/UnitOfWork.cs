@@ -14,18 +14,22 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IFormatRepository FormatRepository { get; }
 
+        public IPlatformOwnerRepository PlatformOwnerRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
             DatabaseContext context,
             IAccountTypeRepository accountTypeRepository,
             IGameRepository gameRepository,
-            IFormatRepository formatRepository)
+            IFormatRepository formatRepository,
+            IPlatformOwnerRepository platformOwnerRepository)
         {
             _context = context;
             AccountTypeRepository = accountTypeRepository;
             GameRepository = gameRepository;
             FormatRepository = formatRepository;
+            PlatformOwnerRepository = platformOwnerRepository;
         }
 
         public async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)
