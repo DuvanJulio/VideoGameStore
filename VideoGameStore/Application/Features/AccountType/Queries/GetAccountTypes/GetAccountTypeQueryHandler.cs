@@ -2,7 +2,7 @@ using MediatR;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.Entities;
 
-namespace VideoGameStore.Application.Features.AccountType.Queries.GetAccountType
+namespace VideoGameStore.Application.Features.AccountType.Queries.GetAccountTypes
 {
     public class GetAccountTypeQueryHandler : IRequestHandler<GetAccountTypeQuery, List<AccountTypeEntity>>
     {
