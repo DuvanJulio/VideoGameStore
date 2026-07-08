@@ -55,13 +55,12 @@ namespace VideoGameStore.Presentation.Config.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Success<List<AccountTypeEntity>>>> GetAccountTypes([FromQuery] GetAccountTypeQuery query, CancellationToken cancellationToken)
+        public async Task<ActionResult<Success<List<AccountTypeEntity>>>> GetAccountTypes(
+            [FromQuery] GetAccountTypeQuery query, CancellationToken cancellationToken)
         {
             var queryResponse = await _mediator.Send(query, cancellationToken);
 
-            var response = Success<List<AccountTypeEntity>>.Create(
-                data: queryResponse
-            );
+            var response = Success<List<AccountTypeEntity>>.Create(data: queryResponse);
 
             return response;
         }

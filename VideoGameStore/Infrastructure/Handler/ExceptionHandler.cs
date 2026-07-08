@@ -38,7 +38,7 @@ namespace VideoGameStore.Infrastructure.Handler
                     break;
                 default:
                     
-                    response.Error = statusCode.ToString("Error interno en el servidor");
+                    response.Error = "Error interno en el servidor";
                     response.Message = exception.Message;
                     break;
             }
