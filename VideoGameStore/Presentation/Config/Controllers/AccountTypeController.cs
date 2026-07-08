@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using VideoGameStore.Application.Features.AccountType.Commands.InsertAccountType;
-using VideoGameStore.Application.Features.AccountType.Commands.InsertAccountType;
+using VideoGameStore.Application.Features.AccountType.Commands.UpdateAccountType;
 using VideoGameStore.Application.Features.AccountType.Queries.GetAccountTypes;
 using VideoGameStore.Domain.Entities;
 using VideoGameStore.Domain.Models.Response;
@@ -29,7 +29,17 @@ namespace VideoGameStore.Presentation.Config.Controllers
         {
             var result = await _mediator.Send(command, cancellationToken);
 
-            return Ok(Success<bool>.Create(data: result));        
+            return Ok(Success<bool>.Create(data: result));    
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Success<bool>>> UpdateAccountType(
+            [FromBody] UpdateAccountTypeCommand command,
+            CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+
+            return Ok(Success<bool>.Create(data: result));
         }
 
         [HttpGet]
