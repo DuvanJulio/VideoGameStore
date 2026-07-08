@@ -12,16 +12,20 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IGameRepository GameRepository { get; }
 
+        public IFormatRepository FormatRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
             DatabaseContext context,
             IAccountTypeRepository accountTypeRepository,
-            IGameRepository gameRepository)
+            IGameRepository gameRepository,
+            IFormatRepository formatRepository)
         {
             _context = context;
             AccountTypeRepository = accountTypeRepository;
             GameRepository = gameRepository;
+            FormatRepository = formatRepository;
         }
 
         public async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)

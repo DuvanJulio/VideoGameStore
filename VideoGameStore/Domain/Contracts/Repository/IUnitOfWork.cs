@@ -6,6 +6,8 @@ namespace VideoGameStore.Domain.Contracts.Repository
 
         public IGameRepository GameRepository { get; }
 
+        public IFormatRepository FormatRepository { get; }
+
         Task<int> SaveChangeAsync(CancellationToken cancellationToken = default);
 
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);

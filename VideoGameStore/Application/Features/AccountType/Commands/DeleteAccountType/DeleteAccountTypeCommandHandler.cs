@@ -22,6 +22,7 @@ namespace VideoGameStore.Application.Features.AccountType.Commands.DeleteAccount
                 throw new NotFoundException(nameof(AccountTypeEntity));
 
             accountType.IsActive = false;
+            
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return true;
