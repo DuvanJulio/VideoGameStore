@@ -4,6 +4,7 @@ using VideoGameStore.Application.Features.AccountType.Commands.InsertAccountType
 using VideoGameStore.Application.Features.AccountType.Commands.UpdateAccountType;
 using VideoGameStore.Application.Features.AccountType.Commands.DeleteAccountType;
 using VideoGameStore.Application.Features.AccountType.Queries.GetAccountTypes;
+using VideoGameStore.Application.Features.AccountType.Queries.GetAccountTypesById;
 using VideoGameStore.Domain.Entities;
 using VideoGameStore.Domain.Models.Response;
 using VideoGameStore.Infrastructure.Utils.Attributes;
@@ -30,7 +31,7 @@ namespace VideoGameStore.Presentation.Config.Controllers
         {
             var result = await _mediator.Send(command, cancellationToken);
 
-            return Ok(Success<bool>.Create(data: result));    
+            return Ok(Success<bool>.Create(data: result));
         }
 
         [HttpPut]
@@ -63,6 +64,15 @@ namespace VideoGameStore.Presentation.Config.Controllers
             );
 
             return response;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Success<AccountTypeEntity>>> GetAccountTypesById(
+            [FromQuery] GetAccountTypesByIdQuery query, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(query, cancellationToken);
+
+            return Ok(Success<AccountTypeEntity>.Create(data: result));
         }
     }
 }
