@@ -1,5 +1,4 @@
 using MediatR;
-using VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.Exception;
 using VideoGameStore.Domain.Entities;
@@ -15,9 +14,9 @@ namespace VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> Handle(SoftDeleteGameCommand reques, CancellationToken cancellationToken)
+        public async Task<bool> Handle(SoftDeleteGameCommand request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetByIdAsync(reques.Id, cancellationToken);
+            var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (game is null)
                 throw new NotFoundException(nameof(GameEntity));
