@@ -1,10 +1,10 @@
 using FluentValidation;
 
-namespace VideoGameStore.Application.Features.Format.Queries.GetFormatById
+namespace VideoGameStore.Application.Features.Format.Commands.DeleteFormat
 {
-    public class GetFormatByIdQueryValidator : AbstractValidator<GetFormatByIdQuery>
+    public class DeleteFormatCommandValidator : AbstractValidator<DeleteFormatCommand>
     {
-        public GetFormatByIdQueryValidator()
+        public DeleteFormatCommandValidator()
         {
             RuleFor(x => x.Id)
                 .Cascade(CascadeMode.Stop)
