@@ -8,13 +8,9 @@ namespace VideoGameStore.Domain.Entities
 
         public long IdGamePlatform { get; set; }
 
-        public long IdFormat { get; set; }
-
         public long IdProductType { get; set; }
 
         public GamePlatformEntity? GamePlatform { get; private set; }
-
-        public FormatEntity? Format { get; private set; }
 
         public ProductTypeEntity? ProductType { get; private set; }
 

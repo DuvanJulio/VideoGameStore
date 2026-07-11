@@ -28,7 +28,6 @@ namespace VideoGameStore.Infrastructure.Config
             // Repositorios y Unit of Work
             services.AddScoped<IAccountTypeRepository, AccountTypeRepository>();
             services.AddScoped<IGameRepository, GameRepository>();
-            services.AddScoped<IFormatRepository, FormatRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

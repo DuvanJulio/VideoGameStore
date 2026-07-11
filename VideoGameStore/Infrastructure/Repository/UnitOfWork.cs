@@ -12,8 +12,6 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IGameRepository GameRepository { get; }
 
-        public IFormatRepository FormatRepository { get; }
-
 
         public IProductTypeRepository ProductTypeRepository { get; }
 
@@ -23,13 +21,11 @@ namespace VideoGameStore.Infrastructure.Repository
             DatabaseContext context,
             IAccountTypeRepository accountTypeRepository,
             IGameRepository gameRepository,
-            IFormatRepository formatRepository,
             IProductTypeRepository productTypeRepository)
         {
             _context = context;
             AccountTypeRepository = accountTypeRepository;
             GameRepository = gameRepository;
-            FormatRepository = formatRepository;
             ProductTypeRepository = productTypeRepository;
         }
 

@@ -76,8 +76,6 @@ namespace VideoGameStore.Infrastructure.Database
 
         public DbSet<AccountTypeEntity> AccountType => Set<AccountTypeEntity>();
 
-        public DbSet<FormatEntity> Format => Set<FormatEntity>();
-
         public DbSet<GameEntity> Game => Set<GameEntity>();
 
         public DbSet<GamePlatformEntity> GamePlatform => Set<GamePlatformEntity>();
