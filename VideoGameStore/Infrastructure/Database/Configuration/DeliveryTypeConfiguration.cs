@@ -5,9 +5,9 @@ using VideoGameStore.Domain.Entities;
 
 namespace VideoGameStore.Infrastructure.Database.Configuration
 {
-    public class AccountTypeConfiguration : IEntityTypeConfiguration<AccountTypeEntity>
+    public class DeliveryTypeConfiguration : IEntityTypeConfiguration<DeliveryTypeEntity>
     {
-        public void Configure(EntityTypeBuilder<AccountTypeEntity> builder)
+        public void Configure(EntityTypeBuilder<DeliveryTypeEntity> builder)
         {
             builder.ToTable("account_type");
 

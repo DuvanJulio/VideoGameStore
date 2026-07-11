@@ -8,7 +8,7 @@ namespace VideoGameStore.Infrastructure.Repository
     {
         public DatabaseContext _context;
 
-        public IAccountTypeRepository AccountTypeRepository { get; }
+        public IDeliveryTypeRepository DeliveryTypeRepository { get; }
 
         public IGameRepository GameRepository { get; }
 
@@ -19,12 +19,12 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public UnitOfWork(
             DatabaseContext context,
-            IAccountTypeRepository accountTypeRepository,
+            IDeliveryTypeRepository deliveryTypeRepository,
             IGameRepository gameRepository,
             IProductTypeRepository productTypeRepository)
         {
             _context = context;
-            AccountTypeRepository = accountTypeRepository;
+            DeliveryTypeRepository = deliveryTypeRepository;
             GameRepository = gameRepository;
             ProductTypeRepository = productTypeRepository;
         }

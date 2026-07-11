@@ -1,11 +1,11 @@
 using FluentValidation;
 
 
-namespace VideoGameStore.Application.Features.AccountType.Commands.InsertAccountType
+namespace VideoGameStore.Application.Features.DeliveryType.Commands.InsertDeliveryType
 {
-    public class InsertAccountTypeCommandValidator : AbstractValidator<InsertAccountTypeCommand>
+    public class InsertDeliveryTypeCommandValidator : AbstractValidator<InsertDeliveryTypeCommand>
     {
-        public InsertAccountTypeCommandValidator()
+        public InsertDeliveryTypeCommandValidator()
         {
             RuleFor(x => x.Name)
                 .Cascade(CascadeMode.Stop)

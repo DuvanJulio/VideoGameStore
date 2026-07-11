@@ -8,9 +8,9 @@ namespace VideoGameStore.Domain.Entities
 
         public long IdProduct { get; set; }
 
-        public long IdAccountType { get; set; }
+        public long IdDeliveryType { get; set; }
 
-        public AccountTypeEntity? AccountType { get; private set; }
+        public DeliveryTypeEntity? DeliveryType { get; private set; }
         
         public ProductEntity? Products { get; private set; }
     }

@@ -26,7 +26,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddDbContext<DatabaseContext>();
 
             // Repositorios y Unit of Work
-            services.AddScoped<IAccountTypeRepository, AccountTypeRepository>();
+            services.AddScoped<IDeliveryTypeRepository, DeliveryTypeRepository>();
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

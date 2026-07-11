@@ -16,14 +16,14 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.Property(x => x.Price).HasColumnName("price");
             builder.Property(x => x.Stock).HasColumnName("stock");
             builder.Property(x => x.IdProduct).HasColumnName("id_product");
-            builder.Property(x => x.IdAccountType).HasColumnName("id_account_type");
+            builder.Property(x => x.IdDeliveryType).HasColumnName("id_account_type");
             builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
 
-            builder.HasOne(x => x.AccountType)
+            builder.HasOne(x => x.DeliveryType)
                 .WithMany(x => x.ProductVariants)
-                .HasForeignKey(x => x.IdAccountType);
+                .HasForeignKey(x => x.IdDeliveryType);
 
             builder.HasOne(x => x.Products)
                 .WithMany(x => x.ProductVariants)

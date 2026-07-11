@@ -4,9 +4,9 @@ using VideoGameStore.Infrastructure.Database;
 
 namespace VideoGameStore.Infrastructure.Repository
 {
-    public class AccountTypeRepository : AsyncRepository<AccountTypeEntity>, IAccountTypeRepository
+    public class DeliveryTypeRepository : AsyncRepository<DeliveryTypeEntity>, IDeliveryTypeRepository
     {
-        public AccountTypeRepository(DatabaseContext context) : base(context)
+        public DeliveryTypeRepository(DatabaseContext context) : base(context)
         {
         }
     }

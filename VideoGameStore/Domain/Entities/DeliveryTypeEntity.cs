@@ -1,6 +1,6 @@
 namespace VideoGameStore.Domain.Entities
 {
-    public class AccountTypeEntity : BaseEntity
+    public class DeliveryTypeEntity : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
 

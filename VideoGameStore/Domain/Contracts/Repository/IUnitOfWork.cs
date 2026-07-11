@@ -2,7 +2,7 @@ namespace VideoGameStore.Domain.Contracts.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
-        public IAccountTypeRepository AccountTypeRepository { get; }
+        public IDeliveryTypeRepository DeliveryTypeRepository { get; }
 
         public IGameRepository GameRepository { get; }
 

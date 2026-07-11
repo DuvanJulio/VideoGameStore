@@ -1,10 +1,10 @@
 using FluentValidation;
 
-namespace VideoGameStore.Application.Features.AccountType.Commands.UpdateAccountType
+namespace VideoGameStore.Application.Features.DeliveryType.Commands.UpdateDeliveryType
 {
-    public class UpdateAccountTypeCommandValidator : AbstractValidator<UpdateAccountTypeCommand>
+    public class UpdateDeliveryTypeCommandValidator : AbstractValidator<UpdateDeliveryTypeCommand>
     {
-        public UpdateAccountTypeCommandValidator()
+        public UpdateDeliveryTypeCommandValidator()
         {
             RuleFor(x => x.Id)
                 .Cascade(CascadeMode.Stop)

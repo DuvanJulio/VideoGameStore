@@ -74,7 +74,7 @@ namespace VideoGameStore.Infrastructure.Database
             return await base.SaveChangesAsync(cancellationToken);
         }
 
-        public DbSet<AccountTypeEntity> AccountType => Set<AccountTypeEntity>();
+        public DbSet<DeliveryTypeEntity> DeliveryType => Set<DeliveryTypeEntity>();
 
         public DbSet<GameEntity> Game => Set<GameEntity>();
 
