@@ -54,7 +54,7 @@ namespace VideoGameStore.Presentation.Config.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Success<PlatformOwnerEntity>>> GetProducTypeById(
+        public async Task<ActionResult<Success<ProductTypeEntity>>> GetProducTypeById(
             [FromQuery] GetProducTypeByIdQuery query, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(query, cancellationToken);

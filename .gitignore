@@ -1,7 +1,9 @@
 VideoGameStore.slnx
 VideoGameStore/bin/
 VideoGameStore/obj/
+VideoGameStore/Migrations/
 
+Migrations/
 bin/
 obj/
 .vs/

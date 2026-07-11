@@ -13,15 +13,10 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).HasColumnName("id");
-            builder.Property(x => x.IdPlatformOwner).HasColumnName("id_platform_owner");
             builder.Property(x => x.Name).HasColumnName("name");
             builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
-
-            builder.HasOne(x => x.PlatformOwner)
-                .WithMany(x => x.Platforms)
-                .HasForeignKey(x => x.IdPlatformOwner);
         }
     }
 }

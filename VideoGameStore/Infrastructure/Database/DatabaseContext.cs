@@ -88,8 +88,6 @@ namespace VideoGameStore.Infrastructure.Database
 
         public DbSet<PlatformEntity> Platform => Set<PlatformEntity>();
 
-        public DbSet<PlatformOwnerEntity> PlatformOwner => Set<PlatformOwnerEntity>();
-
         public DbSet<ProductEntity> Product => Set<ProductEntity>();
 
         public DbSet<ProductTypeEntity> ProductType => Set<ProductTypeEntity>();
