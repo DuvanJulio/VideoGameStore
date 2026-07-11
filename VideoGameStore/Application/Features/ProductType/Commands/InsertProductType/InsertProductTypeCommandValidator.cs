@@ -1,15 +1,11 @@
 using FluentValidation;
 
-namespace VideoGameStore.Application.Features.PlatformOwner.Commands.UpdatePlatformOwner
+namespace VideoGameStore.Application.Features.ProductType.Commands.InsertProductType
 {
-    public class UpdatePlatformOwnerCommandValidator : AbstractValidator<UpdatePlatformOwnerCommand>
+    public class InsertProductTypeCommandValidator : AbstractValidator<InsertProductTypeCommand>
     {
-        public UpdatePlatformOwnerCommandValidator()
+        public InsertProductTypeCommandValidator()
         {
-            RuleFor(x => x.Id)
-                .Cascade(CascadeMode.Stop)
-                .GreaterThan(0).WithMessage("{PropertyName} debe ser mayor a 0");
-
             RuleFor(x => x.Name)
                 .Cascade(CascadeMode.Stop)
                 .NotNull().WithMessage("{PropertyName} no puede ser nulo")

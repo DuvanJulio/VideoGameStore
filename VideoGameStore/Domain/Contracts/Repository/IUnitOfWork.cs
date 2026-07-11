@@ -10,6 +10,8 @@ namespace VideoGameStore.Domain.Contracts.Repository
 
         public IPlatformOwnerRepository PlatformOwnerRepository { get; }
 
+        public IProductTypeRepository ProductTypeRepository { get; }
+
         Task<int> SaveChangeAsync(CancellationToken cancellationToken = default);
 
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);

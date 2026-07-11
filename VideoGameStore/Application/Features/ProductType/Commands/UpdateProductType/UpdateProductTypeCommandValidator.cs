@@ -1,10 +1,10 @@
 using FluentValidation;
 
-namespace VideoGameStore.Application.Features.PlatformOwner.Commands.UpdatePlatformOwner
+namespace VideoGameStore.Application.Features.ProductType.Commands.UpdateProductType
 {
-    public class UpdatePlatformOwnerCommandValidator : AbstractValidator<UpdatePlatformOwnerCommand>
+    public class UpdateProductTypeCommandValidator : AbstractValidator<UpdateProductTypeCommand>
     {
-        public UpdatePlatformOwnerCommandValidator()
+        public UpdateProductTypeCommandValidator()
         {
             RuleFor(x => x.Id)
                 .Cascade(CascadeMode.Stop)

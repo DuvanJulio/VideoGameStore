@@ -30,6 +30,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IFormatRepository, FormatRepository>();
             services.AddScoped<IPlatformOwnerRepository, PlatformOwnerRepository>();
+            services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

@@ -6,6 +6,10 @@ namespace VideoGameStore.Application.Features.Format.Commands.UpdateFormat
     {
         public UpdateGameCommandValidator()
         {
+            RuleFor(x => x.Id)
+                .Cascade(CascadeMode.Stop)
+                .GreaterThan(0).WithMessage("{PropertyName} debe ser mayor a 0");
+
             RuleFor(x => x.Name)
                 .Cascade(CascadeMode.Stop)
                 .NotNull().WithMessage("{PropertyName} no puede ser nulo")
