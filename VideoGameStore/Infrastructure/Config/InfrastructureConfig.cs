@@ -6,6 +6,10 @@ using VideoGameStore.Infrastructure.Database;
 using VideoGameStore.Infrastructure.Handler;
 using VideoGameStore.Infrastructure.Repository;
 using VideoGameStore.Infrastructure.Utils;
+using VideoGameStore.Application.Interfaces;
+using VideoGameStore.Infrastructure.Security;
+using VideoGameStore.Presentation.Config.Jwt;
+
 
 namespace VideoGameStore.Infrastructure.Config
 {
@@ -16,6 +20,8 @@ namespace VideoGameStore.Infrastructure.Config
             // Settings
             services.Configure<AppEnvironment>(configuration.GetSection("AppEnvironment"));
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<AppEnvironment>>().Value);
+
+            services.AddJwtAuthentication(configuration);
 
             services.AddHttpContextAccessor().AddHttpClient();
 
@@ -30,7 +36,10 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            
+            //JWT
+            services.AddScoped<ITokenService, TokenService>();
+            
             return services;
         }
     }
