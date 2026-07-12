@@ -16,8 +16,5 @@ namespace VideoGameStore.Domain.Entities
 
         [JsonIgnore]
         public ICollection<ProductVariantEntity> ProductVariants { get; private set; } = [];
-
-        [JsonIgnore]
-        public ICollection<MembershipEntity> Memberships { get; private set; } = [];
     }
 }

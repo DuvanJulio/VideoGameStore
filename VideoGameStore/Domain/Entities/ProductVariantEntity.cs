@@ -11,7 +11,9 @@ namespace VideoGameStore.Domain.Entities
         public long IdDeliveryType { get; set; }
 
         public DeliveryTypeEntity? DeliveryType { get; private set; }
-        
+
         public ProductEntity? Products { get; private set; }
+
+        public ICollection<OrderDetailEntity> OrderDetails { get; private set; } = [];
     }
 }
