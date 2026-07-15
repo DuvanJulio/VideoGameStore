@@ -1,5 +1,4 @@
 using MediatR;
-using VideoGameStore.Application.Features.Auth.Commands.Login.Validators;
 using VideoGameStore.Application.Interfaces;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.DTOs;
@@ -20,15 +19,8 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthDTO>
 
     public async Task<AuthDTO> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var validator = new LoginCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-        if (!validationResult.IsValid)
-        {
-            throw new DataValidationException(validationResult.Errors);
-        }
-
-        var user = await _userRepository.GetByEmailAsync(request.Email);
+        var user = await _userRepository.GetByEmailAsync(request.Email.Trim().ToLower());
 
         if (user is null)
         {

@@ -1,31 +1,23 @@
 using MediatR;
-using VideoGameStore.Application.Features.Auth.Commands.Register.Validators;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.Entities;
-using VideoGameStore.Domain.Exception;
+
 
 namespace VideoGameStore.Application.Features.Auth.Commands.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, bool>
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public RegisterCommandHandler(IUserRepository userRepository)
+    public RegisterCommandHandler(IUnitOfWork unitOfWork)
     {
-        _userRepository = userRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<bool> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var validator = new RegisterCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-        if (!validationResult.IsValid)
-        {
-            throw new DataValidationException(validationResult.Errors);
-        }
-
-        if (await _userRepository.ExistsByEmailAsync(request.Email))
+        if (await _unitOfWork.UserRepository.ExistsByEmailAsync(request.Email))
         {
             throw new Exception("El correo ya está registrado.");
         }
@@ -39,7 +31,8 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, bool>
             Password = passwordHash,
             IdRole = request.RoleId
         };
-        await _userRepository.AddAsync(user);
+        await _unitOfWork.UserRepository.AddAsync(user);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
 
         return true;
     }

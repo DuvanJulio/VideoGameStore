@@ -17,6 +17,8 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IUserRepository UserRepository { get; }
 
+        public IRoleRepository RoleRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
@@ -24,13 +26,15 @@ namespace VideoGameStore.Infrastructure.Repository
             IDeliveryTypeRepository deliveryTypeRepository,
             IGameRepository gameRepository,
             IProductTypeRepository productTypeRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IRoleRepository roleRepository)
         {
             _context = context;
             DeliveryTypeRepository = deliveryTypeRepository;
             GameRepository = gameRepository;
             ProductTypeRepository = productTypeRepository;
             UserRepository = userRepository;
+            RoleRepository = roleRepository;
         }
 
         public async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)

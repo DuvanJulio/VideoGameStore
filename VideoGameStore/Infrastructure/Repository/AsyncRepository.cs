@@ -22,6 +22,7 @@ namespace VideoGameStore.Infrastructure.Repository
         {
             return await _context.Set<T>().FindAsync([id], cancellationToken);
         }
+        
 
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {

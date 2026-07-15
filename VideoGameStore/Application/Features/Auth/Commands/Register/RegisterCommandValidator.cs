@@ -1,5 +1,4 @@
 using FluentValidation;
-using VideoGameStore.Application.Features.Auth.Commands.Register;
 
 namespace VideoGameStore.Application.Features.Auth.Commands.Register.Validators
 {
