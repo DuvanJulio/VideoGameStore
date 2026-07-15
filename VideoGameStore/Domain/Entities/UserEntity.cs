@@ -6,11 +6,11 @@ namespace VideoGameStore.Domain.Entities
 
         public string Email { get; set; } = string.Empty;
 
-        public string PasswordHash { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
 
-        public long IdRol { get; set; }
+        public long IdRole { get; set; }
 
-        public RolEntity? Rol { get; private set; }
+        public RoleEntity? Role { get; private set; }
 
         public ICollection<OrderEntity> Order { get; private set; } = [];
     }

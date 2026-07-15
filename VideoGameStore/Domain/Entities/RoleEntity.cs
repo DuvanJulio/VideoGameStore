@@ -1,6 +1,6 @@
 namespace VideoGameStore.Domain.Entities
 {
-    public class RolEntity : BaseEntity
+    public class RoleEntity : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
 

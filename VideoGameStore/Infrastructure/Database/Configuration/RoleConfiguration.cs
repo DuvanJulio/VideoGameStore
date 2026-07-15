@@ -4,11 +4,11 @@ using VideoGameStore.Domain.Entities;
 
 namespace VideoGameStore.Infrastructure.Database.Configuration
 {
-    public class RolConfiguration : IEntityTypeConfiguration<RolEntity>
+    public class RoleConfiguration : IEntityTypeConfiguration<RoleEntity>
     {
-        public void Configure(EntityTypeBuilder<RolEntity> builder)
+        public void Configure(EntityTypeBuilder<RoleEntity> builder)
         {
-            builder.ToTable("Rol");
+            builder.ToTable("Role");
 
             builder.HasKey(x => x.Id);
 

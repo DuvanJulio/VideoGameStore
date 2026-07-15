@@ -9,7 +9,7 @@ namespace VideoGameStore.Infrastructure.Database
 {
     public class DatabaseContext : DbContext
     {
-         private readonly AppEnvironment _env;
+        private readonly AppEnvironment _env;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, AppEnvironment env) : base(options)
         {
@@ -45,7 +45,7 @@ namespace VideoGameStore.Infrastructure.Database
                         builder.Property("UpdatedAt")
                             .HasDefaultValueSql("CURRENT_TIMESTAMP(6)")
                             .ValueGeneratedOnAddOrUpdate();
-                        
+
                         builder.Property("IsActive")
                             .HasDefaultValue(true)
                             .ValueGeneratedOnAdd();
@@ -90,6 +90,11 @@ namespace VideoGameStore.Infrastructure.Database
 
         public DbSet<ProductTypeEntity> ProductType => Set<ProductTypeEntity>();
 
-        public DbSet<ProductVariantEntity> ProductVariant => Set<ProductVariantEntity>();   
+        public DbSet<ProductVariantEntity> ProductVariant => Set<ProductVariantEntity>();
+
+        public DbSet<UserEntity> User => Set<UserEntity>();
+
+        public DbSet<RoleEntity> Role => Set<RoleEntity>();
+
     }
 }

@@ -1,6 +1,8 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VideoGameStore.Application.Interfaces;
+using VideoGameStore.Application.Features.Auth.Commands.Login;
+using VideoGameStore.Application.Features.Auth.Commands.Register;
 
 namespace VideoGameStore.Presentation.Controllers;
 
@@ -8,26 +10,23 @@ namespace VideoGameStore.Presentation.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly ITokenService _tokenService;
-
-    public AuthController(ITokenService tokenService)
+    private readonly ISender _sender;
+    public AuthController(ISender sender)
     {
-        _tokenService = tokenService;
+        _sender = sender;
     }
-
+    [HttpPost("register")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Register([FromBody] RegisterCommand command)
+    {
+        await _sender.Send(command);
+        return Ok(new { Message = "Usuario registrado exitosamente." });
+    }
     [HttpPost("login")]
     [AllowAnonymous]
-    
-    //Prueba sin base de datos
-    public IActionResult Login()
+    public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
-
-        var token = _tokenService.GenerateToken(
-            idUser: 1,
-            email: "admin@videogamestore.com",
-            role: "Admin",
-            expiration: DateTime.UtcNow.AddHours(1));
-
-        return Ok(new { Token = token });
+        var response = await _sender.Send(command);
+        return Ok(response);
     }
 }

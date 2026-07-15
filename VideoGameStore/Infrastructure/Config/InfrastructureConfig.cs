@@ -36,6 +36,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             
             //JWT
             services.AddScoped<ITokenService, TokenService>();
