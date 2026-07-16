@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore.Storage;
+using VideoGameStore.Application.Context;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Infrastructure.Database;
 
@@ -19,6 +20,8 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IRoleRepository RoleRepository { get; }
 
+        public ICurrentUser CurrentUser { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
@@ -27,7 +30,8 @@ namespace VideoGameStore.Infrastructure.Repository
             IGameRepository gameRepository,
             IProductTypeRepository productTypeRepository,
             IUserRepository userRepository,
-            IRoleRepository roleRepository)
+            IRoleRepository roleRepository,
+            ICurrentUser currentUser)
         {
             _context = context;
             DeliveryTypeRepository = deliveryTypeRepository;
@@ -35,6 +39,7 @@ namespace VideoGameStore.Infrastructure.Repository
             ProductTypeRepository = productTypeRepository;
             UserRepository = userRepository;
             RoleRepository = roleRepository;
+            CurrentUser = currentUser;
         }
 
         public async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)

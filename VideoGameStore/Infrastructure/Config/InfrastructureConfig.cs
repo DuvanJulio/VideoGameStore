@@ -9,6 +9,8 @@ using VideoGameStore.Infrastructure.Utils;
 using VideoGameStore.Application.Interfaces;
 using VideoGameStore.Infrastructure.Security;
 using VideoGameStore.Presentation.Config.Jwt;
+using VideoGameStore.Application.Context;
+using VideoGameStore.Infrastructure.Context;
 
 
 namespace VideoGameStore.Infrastructure.Config
@@ -38,6 +40,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ICurrentUser, CurrentUser>();
             
             //JWT
             services.AddScoped<ITokenService, TokenService>();
