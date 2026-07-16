@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 using VideoGameStore.Application.Common.Options;
 using Microsoft.Extensions.Options;
@@ -22,10 +23,15 @@ public static class JwtAuthenticationExtensions
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtOptions!.Issuer,
                     ValidAudience = jwtOptions.Audience,
-                    ClockSkew = TimeSpan.Zero, 
+                    ClockSkew = TimeSpan.Zero,
+                    NameClaimType = "sub",
+                    RoleClaimType = ClaimTypes.Role,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(jwtOptions.Key))
                 };

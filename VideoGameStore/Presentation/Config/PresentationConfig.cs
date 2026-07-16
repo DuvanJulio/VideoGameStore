@@ -36,6 +36,7 @@ namespace VideoGameStore.Presentation.Config
                         Name = "Video Game Store Support",
                         Email = "duvanxjulio@gmail.com",
                     };
+
                     return Task.CompletedTask;
                 });
             });

@@ -52,10 +52,12 @@ namespace VideoGameStore.Infrastructure.Context
         }
 
         public string? Email =>
-            User?.FindFirst(ClaimTypes.Email)?.Value;
+            User?.FindFirst(ClaimTypes.Email)?.Value
+            ?? User?.FindFirst("email")?.Value;
 
         public string? Role =>
-            User?.FindFirst(ClaimTypes.Role)?.Value;
+            User?.FindFirst(ClaimTypes.Role)?.Value
+            ?? User?.FindFirst("role")?.Value;
 
         public async Task<UserEntity?> GetUserAsync()
         {

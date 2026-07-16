@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using VideoGameStore.Application.Interfaces;
@@ -10,7 +10,6 @@ namespace VideoGameStore.Infrastructure.Security;
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _configuration;
-    private readonly JsonWebTokenHandler _tokenHandler = new();
 
     public TokenService(IConfiguration configuration)
     {
@@ -36,6 +35,8 @@ public class TokenService : ITokenService
                 ClaimValueTypes.Integer64)
         };
 
+        var tokenHandler = new JwtSecurityTokenHandler();
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
@@ -45,6 +46,7 @@ public class TokenService : ITokenService
             Audience = _configuration["Jwt:Audience"]
         };
 
-        return _tokenHandler.CreateToken(tokenDescriptor);
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
     }
 }

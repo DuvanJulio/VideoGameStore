@@ -1,5 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using VideoGameStore.Application.Context;
 using VideoGameStore.Application.Features.Game.Commands.DeleteGame;
 using VideoGameStore.Application.Features.Game.Commands.InsertGame;
 using VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame;
@@ -19,10 +21,12 @@ namespace VideoGameStore.Presentation.Config.Controllers
     public class GameController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ICurrentUser _currentUser;
 
-        public GameController(IMediator mediator)
+        public GameController(IMediator mediator, ICurrentUser currentUser)
         {
             _mediator = mediator;
+            _currentUser = currentUser;
         }
 
         [HttpPost]
@@ -30,8 +34,23 @@ namespace VideoGameStore.Presentation.Config.Controllers
             [FromBody] InsertGameCommand command,
             CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(command, cancellationToken);
+            if (!_currentUser.IsAuthenticated)
+                return StatusCode(401, new Failure<bool>
+                {
+                    Error = "Usuario no autenticado",
+                    Message = "Acceso denegado"
+                });
 
+            var user = await _currentUser.GetUserAsync();
+
+            if (_currentUser.Role != "Admin")
+                return StatusCode(403, new Failure<bool>
+                {
+                    Error = "Solo el Rol Admin puede insertar juegos",
+                    Message = "Acceso denegado"
+                });
+
+            var result = await _mediator.Send(command, cancellationToken);
             return Ok(Success<bool>.Create(data: result));
         }
 
@@ -83,8 +102,11 @@ namespace VideoGameStore.Presentation.Config.Controllers
             CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            
-            return Ok(Success<bool>.Create(data: result));        
+
+            return Ok(Success<bool>.Create(data: result));
         }
+        
+        
+        
     }
 }

@@ -38,7 +38,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthDTO>
         string token = _tokenService.GenerateToken(
             idUser: user.Id,
             email: user.Email,
-            role: user.IdRole.ToString(),
+            role: user.Role?.Name ?? user.IdRole.ToString(),
             expiration: DateTime.UtcNow.AddHours(2)
         );
 
