@@ -37,8 +37,8 @@ namespace VideoGameStore.Presentation.Config.Controllers
             if (!_currentUser.IsAuthenticated)
                 return StatusCode(401, new Failure<bool>
                 {
-                    Error = "Usuario no autenticado",
-                    Message = "Acceso denegado"
+                    Error = "Acceso denegado",
+                    Message = "Usuario no autenticado"
                 });
 
             var user = await _currentUser.GetUserAsync();
@@ -46,8 +46,8 @@ namespace VideoGameStore.Presentation.Config.Controllers
             if (_currentUser.Role != "Admin")
                 return StatusCode(403, new Failure<bool>
                 {
-                    Error = "Solo el Rol Admin puede insertar juegos",
-                    Message = "Acceso denegado"
+                    Error = "Acceso denegado",
+                    Message = "Solo el Rol Admin puede insertar juegos"
                 });
 
             var result = await _mediator.Send(command, cancellationToken);

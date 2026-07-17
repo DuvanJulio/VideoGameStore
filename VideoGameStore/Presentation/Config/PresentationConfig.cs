@@ -23,31 +23,42 @@ namespace VideoGameStore.Presentation.Config
         }
 
         private static IServiceCollection AddOpenAPIConfigurationService(this IServiceCollection services)
+{
+    services.AddOpenApi(options =>
+    {
+        options.AddDocumentTransformer((document, context, cancellationToken) =>
         {
-            services.AddOpenApi(options =>
+            document.Info.Version = "v1.0.0";
+            document.Info.Title = "Video Game Store";
+            document.Info.Description = "Este servicio expone las funcionalidades de una tienda virtual para la compra de video juegos de multiples plataformas.";
+            document.Info.Contact = new OpenApiContact
             {
-                options.AddDocumentTransformer((document, context, cancellationToken) =>
-                {
-                    document.Info.Version = "v1.0.0";
-                    document.Info.Title = "Video Game Store";
-                    document.Info.Description = "Este servicio expone las funcionalidades de una tienda virtual para la compra de video juegos de multiples plataformas.";
-                    document.Info.Contact = new OpenApiContact
-                    {
-                        Name = "Video Game Store Support",
-                        Email = "duvanxjulio@gmail.com",
-                    };
+                Name = "Video Game Store Support",
+                Email = "duvanxjulio@gmail.com",
+            };
 
-                    return Task.CompletedTask;
-                });
-            });
 
-            services.AddMvc(mvc =>
-            {
-                mvc.Conventions.Add(new ControllerNameAttributeConvention());
-            });
+            document.Components ??= new OpenApiComponents();
+            document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
+            document.Components.SecuritySchemes["BearerAuth"] = new OpenApiSecurityScheme
+{
+    Type = SecuritySchemeType.Http,
+    Scheme = "bearer",
+    BearerFormat = "JWT",
+    Description = "Ingresa tu token JWT aquí"
+};
 
-            return services;
-        }
+            return Task.CompletedTask;
+        });
+    });
+
+    services.AddMvc(mvc =>
+    {
+        mvc.Conventions.Add(new ControllerNameAttributeConvention());
+    });
+
+    return services;
+}
 
         private static IServiceCollection AddCORS(this IServiceCollection services)
         {
