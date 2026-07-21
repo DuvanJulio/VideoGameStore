@@ -30,26 +30,11 @@ namespace VideoGameStore.Presentation.Config.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Success<bool>>> InsertGame(
             [FromBody] InsertGameCommand command,
             CancellationToken cancellationToken)
         {
-            if (!_currentUser.IsAuthenticated)
-                return StatusCode(401, new Failure<bool>
-                {
-                    Error = "Acceso denegado",
-                    Message = "Usuario no autenticado"
-                });
-
-            var user = await _currentUser.GetUserAsync();
-
-            if (_currentUser.Role != "Admin")
-                return StatusCode(403, new Failure<bool>
-                {
-                    Error = "Acceso denegado",
-                    Message = "Solo el Rol Admin puede insertar juegos"
-                });
-
             var result = await _mediator.Send(command, cancellationToken);
             return Ok(Success<bool>.Create(data: result));
         }

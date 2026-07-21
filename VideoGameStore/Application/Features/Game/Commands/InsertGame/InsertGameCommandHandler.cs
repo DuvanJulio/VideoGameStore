@@ -1,8 +1,8 @@
-using System.Reflection.Metadata.Ecma335;
 using MediatR;
 using VideoGameStore.Application.Context;
 using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.Entities;
+using VideoGameStore.Domain.Exception;
 
 namespace VideoGameStore.Application.Features.Game.Commands.InsertGame
 {
@@ -22,11 +22,10 @@ namespace VideoGameStore.Application.Features.Game.Commands.InsertGame
 
         public async Task<bool> Handle(InsertGameCommand request, CancellationToken cancellationToken)
         {
-            if (!_currentUser.IsAuthenticated)
-                throw new UnauthorizedAccessException("Usuario no autenticado");
+            
 
-            if (_currentUser.Role != "Admin" || _currentUser.UserId != 1)
-                throw new UnauthorizedAccessException("Solo el Admin puede insertar juegos");
+            if (_currentUser.Role != "Admin") 
+                throw new ForbiddenAccessException("");
 
             var game = new GameEntity
             {

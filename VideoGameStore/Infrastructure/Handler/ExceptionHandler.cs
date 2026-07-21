@@ -36,6 +36,16 @@ namespace VideoGameStore.Infrastructure.Handler
                     response.Error = "Recurso no encontrado.";
                     response.Message = string.Join(", ", _ex.Message);
                     break;
+                case UnauthorizedAccessException _ex:
+                    statusCode = HttpStatusCode.Unauthorized;
+                    response.Error = "Usuario no autenticado";
+                    response.Message = _ex.Message;
+                    break;
+                case ForbiddenAccessException _ex:
+                    statusCode = HttpStatusCode.Forbidden;
+                    response.Error = "Acceso denegado";
+                    response.Message = _ex.Message;
+                    break;
                 default:
                     
                     response.Error = "Error interno en el servidor";
