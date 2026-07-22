@@ -7,3 +7,6 @@ Migrations/
 bin/
 obj/
 .vs/
+Task.md/
+.md/
+Task.md

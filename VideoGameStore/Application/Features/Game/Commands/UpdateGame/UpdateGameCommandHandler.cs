@@ -28,7 +28,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.UpdateGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id);
 
             if (game is null)
-                throw new NotFoundException(nameof(GameEntity), request.Id);
+                throw new NotFoundException();
 
             game.Name = request.Name;
             game.Description = request.Description;

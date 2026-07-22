@@ -19,7 +19,7 @@ namespace VideoGameStore.Application.Features.ProductType.Queries.GetProducTypeB
             var productTypeEntity = await _unitOfWork.ProductTypeRepository.GetByIdAsync(request.Id);
 
             if (productTypeEntity is null)
-                throw new NotFoundException(nameof(ProductTypeEntity), request.Id);
+                throw new NotFoundException();
 
             return productTypeEntity;
         }

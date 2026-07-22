@@ -19,7 +19,7 @@ namespace VideoGameStore.Application.Features.DeliveryType.Queries.GetDeliveryTy
             var DeliveryType = await _uniOfWork.DeliveryTypeRepository.GetByIdAsync(request.Id);
 
             if (DeliveryType is null)
-                throw new NotFoundException(nameof(DeliveryTypeEntity), request.Id);
+                throw new NotFoundException();
 
             return DeliveryType;
         }

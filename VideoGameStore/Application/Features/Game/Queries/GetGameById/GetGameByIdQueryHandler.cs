@@ -19,7 +19,7 @@ namespace VideoGameStore.Application.Features.Game.Queries.GetGameById
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id);
 
             if (game is null)
-                throw new NotFoundException(nameof(GameEntity), request.Id);
+                throw new NotFoundException();
 
             return game;
         }

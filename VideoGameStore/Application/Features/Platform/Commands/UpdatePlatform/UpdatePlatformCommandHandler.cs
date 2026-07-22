@@ -22,7 +22,7 @@ namespace VideoGameStore.Application.Features.Platform.Commands.UpdatePlatform
             if (_currentUser.Role != "Admin")
                 throw new ForbiddenAccessException("");
 
-            var platform = await _unitOfWork.platformRepository.GetByIdAsync(request.Id, cancellationToken);
+            var platform = await _unitOfWork.PlatformRepository.GetByIdAsync(request.Id, cancellationToken);
             if (platform is null)
                 throw new NotFoundException();
 

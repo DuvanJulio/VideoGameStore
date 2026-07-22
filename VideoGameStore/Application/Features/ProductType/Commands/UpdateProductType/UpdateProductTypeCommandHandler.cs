@@ -27,7 +27,7 @@ namespace VideoGameStore.Application.Features.ProductType.Commands.UpdateProduct
             var productType = await _unitOfWork.ProductTypeRepository.GetByIdAsync(request.Id);
 
             if (productType is null)
-                throw new NotFoundException(nameof(ProductTypeEntity), request.Id);
+                throw new NotFoundException("");
 
             productType.Name = request.Name;
 

@@ -29,7 +29,7 @@ namespace VideoGameStore.Application.Features.Platform.Commands.InsertPlatform
                 Name = request.Name
             };
 
-            await _unitOfWork.platformRepository.AddAsync(platform);
+            await _unitOfWork.PlatformRepository.AddAsync(platform);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return true;
