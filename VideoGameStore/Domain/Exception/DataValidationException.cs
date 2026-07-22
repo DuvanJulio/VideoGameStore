@@ -9,7 +9,7 @@ namespace VideoGameStore.Domain.Exception
             Errors = failures.Select(err => err.ErrorMessage).ToList();
         }
 
-        public DataValidationException() : base("Se presentaron uno o mas errores de validacion")
+        public DataValidationException() : base("Se presentaron uno o mas errores de validacion.")
         {
             Errors = new();
         }

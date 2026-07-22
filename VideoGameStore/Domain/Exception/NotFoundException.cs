@@ -7,7 +7,7 @@ namespace VideoGameStore.Domain.Exception
         }
 
         public NotFoundException(string name, object key)
-            : base($"No se encontro el recurso \"{name}\"")
+            : base($"El recurso solicitado no existe.")
         {
         }
     }

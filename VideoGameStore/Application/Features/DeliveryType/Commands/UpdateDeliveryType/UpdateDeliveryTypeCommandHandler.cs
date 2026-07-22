@@ -3,6 +3,7 @@ using VideoGameStore.Domain.Contracts.Repository;
 using VideoGameStore.Domain.Exception;
 using VideoGameStore.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
+using VideoGameStore.Application.Context;
 
 namespace VideoGameStore.Application.Features.DeliveryType.Commands.UpdateDeliveryType
 {
@@ -10,13 +11,20 @@ namespace VideoGameStore.Application.Features.DeliveryType.Commands.UpdateDelive
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateDeliveryTypeCommandHandler(IUnitOfWork unitOfWork)
+        private readonly ICurrentUser _currentUser;
+
+        public UpdateDeliveryTypeCommandHandler(IUnitOfWork unitOfWork, ICurrentUser currentUser)
         {
             _unitOfWork = unitOfWork;
+
+            _currentUser = currentUser;
         }
 
         public async Task<bool> Handle(UpdateDeliveryTypeCommand request, CancellationToken cancellationToken)
         {
+            if (_currentUser.Role != "Admin")
+                throw new ForbiddenAccessException("");
+                
             var DeliveryType = await _unitOfWork.DeliveryTypeRepository.GetByIdAsync(request.Id);
 
             if (DeliveryType is null)

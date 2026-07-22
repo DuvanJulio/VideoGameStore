@@ -19,7 +19,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.DeleteGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (game is null)
-                throw new NotFoundException(nameof(GameEntity), request.Id);
+                throw new NotFoundException("");
 
             await _unitOfWork.GameRepository.DeleteAsync(game, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);

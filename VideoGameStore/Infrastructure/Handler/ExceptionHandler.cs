@@ -27,13 +27,13 @@ namespace VideoGameStore.Infrastructure.Handler
             {
                 case DataValidationException _ex:
                     statusCode = HttpStatusCode.BadRequest;
-                    response.Error = "Solicitud mal formada. ";
+                    response.Error = "Solicitud mal formada";
                     response.Message = string.Join(", ", _ex.Errors);
                        
                     break;
                 case NotFoundException _ex:
                     statusCode = HttpStatusCode.NotFound;
-                    response.Error = "Recurso no encontrado.";
+                    response.Error = "Recurso no encontrado";
                     response.Message = string.Join(", ", _ex.Message);
                     break;
                 case UnauthorizedAccessException _ex:
