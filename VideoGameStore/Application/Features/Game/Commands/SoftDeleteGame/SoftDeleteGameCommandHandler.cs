@@ -29,7 +29,7 @@ namespace VideoGameStore.Application.Features.Game.Commands.SoftDeleteGame
             var game = await _unitOfWork.GameRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (game is null)
-                throw new NotFoundException(nameof(GameEntity));
+                throw new NotFoundException("");
 
             game.IsActive = false;
             await _unitOfWork.SaveChangeAsync(cancellationToken);

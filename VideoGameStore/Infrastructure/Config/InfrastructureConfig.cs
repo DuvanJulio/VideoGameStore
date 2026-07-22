@@ -41,6 +41,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<ICurrentUser, CurrentUser>();
+            services.AddScoped<IPlatformRepository, PlatformRepository>();
             
             //JWT
             services.AddScoped<ITokenService, TokenService>();

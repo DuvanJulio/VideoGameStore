@@ -27,7 +27,7 @@ namespace VideoGameStore.Application.Features.ProductType.Commands.DeleteProduct
             var productType = await _unitOfWork.ProductTypeRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (productType is null)
-                throw new NotFoundException(nameof(ProductEntity));
+                throw new NotFoundException();
 
             productType.IsActive = false;
 

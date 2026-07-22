@@ -28,7 +28,7 @@ namespace VideoGameStore.Application.Features.DeliveryType.Commands.UpdateDelive
             var DeliveryType = await _unitOfWork.DeliveryTypeRepository.GetByIdAsync(request.Id);
 
             if (DeliveryType is null)
-                throw new NotFoundException(nameof(DeliveryTypeEntity), request);
+                throw new NotFoundException();
 
             DeliveryType.Name = request.Name;
 

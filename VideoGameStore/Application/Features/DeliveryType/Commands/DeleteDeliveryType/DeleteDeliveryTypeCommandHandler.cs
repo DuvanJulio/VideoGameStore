@@ -27,7 +27,7 @@ namespace VideoGameStore.Application.Features.DeliveryType.Commands.DeleteDelive
             var DeliveryType = await _unitOfWork.DeliveryTypeRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (DeliveryType is null)
-                throw new NotFoundException(nameof(DeliveryTypeEntity));
+                throw new NotFoundException("");
 
             DeliveryType.IsActive = false;
             
