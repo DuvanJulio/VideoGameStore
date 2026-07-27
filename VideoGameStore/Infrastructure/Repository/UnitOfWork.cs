@@ -24,6 +24,8 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IPlatformRepository PlatformRepository { get; }
 
+        public IMembershipTypeRepository MembershipTypeRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
@@ -34,7 +36,8 @@ namespace VideoGameStore.Infrastructure.Repository
             IUserRepository userRepository,
             IRoleRepository roleRepository,
             ICurrentUser currentUser,
-            IPlatformRepository platformRepository)
+            IPlatformRepository platformRepository,
+            IMembershipTypeRepository membershipTypeRepository)
         {
             _context = context;
             DeliveryTypeRepository = deliveryTypeRepository;
@@ -44,6 +47,7 @@ namespace VideoGameStore.Infrastructure.Repository
             RoleRepository = roleRepository;
             CurrentUser = currentUser;
             PlatformRepository = platformRepository;
+            MembershipTypeRepository = membershipTypeRepository;
             
         }
 
