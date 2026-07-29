@@ -13,11 +13,19 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).HasColumnName("id");
+            builder.Property(x => x.Name).HasColumnName("name");
+            builder.Property(x => x.Price).HasColumnName("price");
+            builder.Property(x => x.Stock).HasColumnName("stock");
+            builder.Property(x => x.IdDeliveryType).HasColumnName("id_delivery_type");
             builder.Property(x => x.IdPlatform).HasColumnName("id_platform");
             builder.Property(x => x.IdMembershipType).HasColumnName("id_membership_type");
             builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
+
+            builder.HasOne(x => x.DeliveryType)
+                .WithMany(x => x.Membership)
+                .HasForeignKey(x => x.IdDeliveryType);
 
             builder.HasOne(x => x.Platform)
                 .WithMany(x => x.Memberships)

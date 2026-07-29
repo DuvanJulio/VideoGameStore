@@ -20,6 +20,12 @@ namespace VideoGameStore.Domain.Contracts.Repository
 
         public IProductRepository ProductRepository { get; }
 
+        public IProductVariantRepository ProductVariantRepository { get; }
+
+        public IOrderRepository OrderRepository { get; }
+        
+        public IMembershipRepository MembershipRepository { get; }
+
         Task<int> SaveChangeAsync(CancellationToken cancellationToken = default);
 
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);
