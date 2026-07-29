@@ -36,6 +36,8 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IMembershipRepository MembershipRepository { get; }
 
+        public IOrderDetailRepository OrderDetailRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
@@ -52,7 +54,8 @@ namespace VideoGameStore.Infrastructure.Repository
             IProductRepository productRepository,
             IProductVariantRepository productVariantRepository,
             IOrderRepository orderRepository,
-            IMembershipRepository membershipRepository)
+            IMembershipRepository membershipRepository,
+            IOrderDetailRepository orderDetailRepository)
         {
             _context = context;
             DeliveryTypeRepository = deliveryTypeRepository;
@@ -68,6 +71,7 @@ namespace VideoGameStore.Infrastructure.Repository
             ProductVariantRepository = productVariantRepository;
             OrderRepository = orderRepository;
             MembershipRepository = membershipRepository;
+            OrderDetailRepository = orderDetailRepository;
 
         }
 

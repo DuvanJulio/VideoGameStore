@@ -23,6 +23,8 @@ namespace VideoGameStore.Domain.Contracts.Repository
         public IProductVariantRepository ProductVariantRepository { get; }
 
         public IOrderRepository OrderRepository { get; }
+
+        public IOrderDetailRepository OrderDetailRepository { get; }
         
         public IMembershipRepository MembershipRepository { get; }
 

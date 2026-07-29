@@ -94,6 +94,8 @@ namespace VideoGameStore.Infrastructure.Database
 
         public DbSet<OrderEntity> Order => Set<OrderEntity>();
 
+        public DbSet<OrderDetailEntity> OrderDetail => Set<OrderDetailEntity>();
+
         public DbSet<UserEntity> User => Set<UserEntity>();
 
         public DbSet<RoleEntity> Role => Set<RoleEntity>();
