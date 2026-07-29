@@ -44,6 +44,7 @@ namespace VideoGameStore.Infrastructure.Config
             services.AddScoped<IPlatformRepository, PlatformRepository>();
             services.AddScoped<IMembershipTypeRepository, MembershipTypeRepository>();
             services.AddScoped<IGamePlatformRepository, GamePlatformRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             
             //JWT
             services.AddScoped<ITokenService, TokenService>();

@@ -28,6 +28,8 @@ namespace VideoGameStore.Infrastructure.Repository
 
         public IGamePlatformRepository GamePlatformRepository { get; }
 
+        public IProductRepository ProductRepository { get; }
+
         public IDbContextTransaction? _contextTransaction = null;
 
         public UnitOfWork(
@@ -40,7 +42,8 @@ namespace VideoGameStore.Infrastructure.Repository
             ICurrentUser currentUser,
             IPlatformRepository platformRepository,
             IMembershipTypeRepository membershipTypeRepository,
-            IGamePlatformRepository gamePlatformRepository)
+            IGamePlatformRepository gamePlatformRepository,
+            IProductRepository productRepository)
         {
             _context = context;
             DeliveryTypeRepository = deliveryTypeRepository;
@@ -52,6 +55,7 @@ namespace VideoGameStore.Infrastructure.Repository
             PlatformRepository = platformRepository;
             MembershipTypeRepository = membershipTypeRepository;
             GamePlatformRepository = gamePlatformRepository;
+            ProductRepository = productRepository;
 
         }
 
