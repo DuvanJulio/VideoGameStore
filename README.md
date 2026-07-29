@@ -1,5 +1,4 @@
-# VideoGameStore
-🎮 VideoGameStore API
+#🎮 VideoGameStore API
 .NET 10MariaDBClean ArchitectureJWT Auth
 
 VideoGameStore API es una solución robusta y escalable desarrollada en .NET 10 diseñada para gestionar el backend de una plataforma de comercio electrónico (E-commerce) de videojuegos físicos y digitales, membresías y pedidos.
