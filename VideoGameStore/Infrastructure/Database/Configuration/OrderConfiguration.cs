@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VideoGameStore.Domain.Entities;
+using VideoGameStore.Domain.Enums; 
 
 namespace VideoGameStore.Infrastructure.Database.Configuration
 {
@@ -22,7 +23,8 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             // mapeo del enum
             builder.Property(x => x.Status)
                    .HasColumnName("status")
-                   .HasConversion<string>(); // guarda "Pending", "Completed", "Cancelled"
+                   .HasConversion<string>() // guarda "Pending", "Completed", "Cancelled"
+                   .HasDefaultValue(OrderStatus.Pending); // Por defecto "Pending"
 
             builder.HasOne(x => x.User)
                 .WithMany(x => x.Order)

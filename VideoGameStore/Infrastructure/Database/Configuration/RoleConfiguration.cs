@@ -17,6 +17,25 @@ namespace VideoGameStore.Infrastructure.Database.Configuration
             builder.Property(x => x.IsActive).HasColumnName("is_active");
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
+
+            builder.HasData(
+                new 
+                { 
+                    Id = 1L, 
+                    Name = "Admin", 
+                    IsActive = true, 
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc), 
+                    UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) 
+                },
+                new 
+                { 
+                    Id = 2L, 
+                    Name = "Cliente", 
+                    IsActive = true, 
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc), 
+                    UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) 
+                }
+            );
         }
     }
 }
