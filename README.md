@@ -5,7 +5,7 @@
 ![Clean Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20Onion-blue)
 ![JWT Auth](https://img.shields.io/badge/Security-JWT%20Bearer-green)
 
-**VideoGameStore API** es una solución robusta y escalable desarrollada en **.NET 10** diseñada para gestionar el backend de una plataforma de comercio electrónico (E-commerce) de videojuegos físicos y digitales, membresías y pedidos.
+**VideoGameStore API** es el backend de una tienda digital de videojuegos desarrollado en **.NET 10**. Gestiona el catálogo de juegos digitales, membresías de usuarios y el procesamiento de pedidos, con autenticación y control de acceso por roles.
 
 El proyecto está construido bajo los principios de **Clean Architecture (Arquitectura Limpia)** y aplica el patrón de diseño **CQRS (Command Query Responsibility Segregation)** con **MediatR**.
 
@@ -59,7 +59,7 @@ VideoGameStore/
 
 ### 🏷️ Membresías y Entregas
 - Gestión de tipos de membresías y suscripciones.
-- Mapeo de tipos de entrega de productos (Digital / Físico).
+- Tipos de entrega configurables para los productos digitales.
 
 ### 🛒 Pedidos y Órdenes
 - Procesamiento de órdenes de compra.
@@ -121,7 +121,7 @@ Una vez iniciada la aplicación en entorno de desarrollo (`Development`), puedes
 
 ## 👤 Autor
 
-Desarrollado **Duván Julio**.
+Desarrollado por **Duván Julio**.
 
 ---
 
